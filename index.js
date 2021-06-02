@@ -1,4 +1,5 @@
 const express = require('express');
+const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const html_to_pdf = require('html-pdf-node');
@@ -13,7 +14,6 @@ app.post('/to-pdf', async (req, res) =>{
   let file = { content: req.body };
   try {
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
-    // const pdfBuffer = "";
     fs.writeFileSync(path.resolve(__dirname, 'sample.pdf'), pdfBuffer);
     res.json({
       pdfBuffer : pdfBuffer
@@ -29,6 +29,7 @@ app.get('/get-file', (req, res) =>{
   res.sendFile(path.resolve(__dirname, 'sample.pdf'))
 })
 
-app.listen(9001, () => {
+const server = http.createServer(app);
+server.listen(9001, () => {
   console.log('Server runs on port 9001')
 })
