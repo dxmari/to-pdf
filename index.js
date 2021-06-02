@@ -27,6 +27,10 @@ app.post('/to-pdf', async (req, res) => {
   }
 })
 
+app.get('/asset/img.jpg', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'img.jpg'))
+})
+
 app.get('/get-file', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'sample.pdf'))
 })
