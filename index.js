@@ -12,7 +12,7 @@ app.use(raw({ type: 'text/html' }));
 
 app.post('/to-pdf', async (req, res) => {
   let file = { content: req.body.toString() };
-  const options = { format: 'A4', margin: { top: 80 } }
+  const options = { format: 'A4', margin: { top: 80, bottom : 80 } }
   try {
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
     fs.writeFileSync(path.resolve(__dirname, 'sample.pdf'), pdfBuffer);
