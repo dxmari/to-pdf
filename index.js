@@ -10,22 +10,25 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(raw({ type: 'text/html' }));
 
-app.post('/to-pdf', async (req, res) =>{
+app.post('/to-pdf', async (req, res) => {
   let file = { content: req.body };
+  const options = { format: 'A4' }
   try {
+    console.log(file);
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
     fs.writeFileSync(path.resolve(__dirname, 'sample.pdf'), pdfBuffer);
     res.json({
-      pdfBuffer : pdfBuffer
+      pdfBuffer: pdfBuffer
     })
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       error
     })
   }
 })
 
-app.get('/get-file', (req, res) =>{
+app.get('/get-file', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'sample.pdf'))
 })
 
