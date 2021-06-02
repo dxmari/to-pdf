@@ -17,8 +17,7 @@ app.post('/to-pdf', async (req, res) => {
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
     fs.writeFileSync(path.resolve(__dirname, 'sample.pdf'), pdfBuffer);
     res.json({
-      // pdfBuffer: pdfBuffer
-      url : '/get-file'
+      pdfBuffer: pdfBuffer
     })
   } catch (error) {
     console.log(error);
