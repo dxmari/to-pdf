@@ -11,14 +11,14 @@ app.use(urlencoded({ extended: false }));
 app.use(raw({ type: 'text/html' }));
 
 app.post('/to-pdf', async (req, res) => {
-  let file = { content: req.body };
+  let file = { content: req.body.toString() };
   const options = { format: 'A4' }
   try {
-    console.log(file);
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
     fs.writeFileSync(path.resolve(__dirname, 'sample.pdf'), pdfBuffer);
     res.json({
-      pdfBuffer: pdfBuffer
+      // pdfBuffer: pdfBuffer
+      url : '/get-file'
     })
   } catch (error) {
     console.log(error);
