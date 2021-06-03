@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Invoice | DVV MEDIA GROUP</title>
+  <meta name="description" content="DVV Media Group | Booking Form" />
+  <meta name="author" content="Effy" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    .bold-text {
+      font-weight: bold;
+    }
+
+    .container {
+      font-family: "Tahoma";
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    .territory-logo {
+      text-align: right;
+    }
+
+    .territory-logo img {
+      width: 300px;
+    }
+
+    .company-det-block {
+      display: flex;
+      width: 100%;
+    }
+
+    .company-det {
+      width: 100%;
+    }
+
+    .company-det .company-name {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .company-det .company-item {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .booking-title {
+      width: 100%;
+      color: rgba(154, 144, 144, 1);
+      font-size: 36px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .top-header {
+      /* display: flex; */
+      margin-top: 32px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #000;
+    }
+
+    .top-header .address-line {
+      width: 45%;
+      display: inline-block;
+    }
+
+    .top-header .list-items {
+      position: relative;
+    }
+
+    .top-header .list-items .list-item.label-title {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .top-header .list-items .list-item {
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    .top-header .deal-det {
+      width: 50%;
+      display: inline-block;
+    }
+
+    .top-header .deal-det.deal-items {
+      text-align: right;
+    }
+
+    .top-header .deal-det.deal-items .deal-item {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+    }
+
+    .top-header .deal-det.deal-items .deal-item .deal-label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .top-header .deal-det.deal-items .deal-item .deal-value {
+      padding-left: 10px;
+      min-width: 125px;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    .table-container {
+      margin-top: 40px;
+    }
+
+    /* .table-container thead {
+      height: 50px;
+    }
+
+    .table-container thead tr {
+      border-bottom: 1px solid #000;
+    }
+
+    .table-container tr.last-row td.no-border {
+      border: 0 !important;
+    }
+
+    .table-container thead tr th {
+      font-size: 12px;
+    }
+
+    .table-container tbody td {
+      min-width: 100px;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      line-height: 28px;
+    }
+
+    .table-container tbody td.vat-col {
+      min-width: 140px;
+    }
+
+    .table-container tbody .desc {
+      text-align: left;
+    }
+
+    table {
+      border-spacing: 0;
+      border-top: 2px solid black !important;
+      border-bottom: 0 !important;
+      border-left: 0 !important;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    th,
+    td {
+      border-top: 0px !important;
+      border-right: 0 !important;
+    } */
+
+    .table-container tr.last-row td.no-border {
+      border: 0 !important;
+    }
+
+    .authorize-container {
+      display: flex;
+      margin-top: -60px;
+    }
+
+    .authorize-container .authorize-item.pl0 {
+      padding-left: 0;
+    }
+
+    .authorize-container .authorize-item {
+      padding-left: 24px;
+    }
+
+    .authorize-container .authorize-item .authorize-item-label {
+      margin-bottom: 5px;
+    }
+
+    footer {
+      margin-top: 60px;
+    }
+
+    footer .footer-text {
+      font-size: 19px;
+      line-height: 30px;
+    }
+
+    #styledHeaderLink {
+      margin-top: 2rem;
+    }
+
+    #styledTable {
+      border-collapse: collapse;
+      width: auto;
+    }
+
+    #styledTable caption {
+      text-align: left;
+      margin: 2rem 0 1rem 0;
+      font-weight: bold;
+    }
+
+    #styledTable td,
+    #styledTable th {
+      border: 0.0625rem solid #ddd;
+      padding: 0.75rem;
+    }
+
+    #styledTable tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #styledTable tr:hover {
+      background-color: #ddd;
+    }
+
+    #styledTable th {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      text-align: left;
+      background-color: #fff;
+      color: #000;
+    }
+
+    #styledTable tfoot {
+      text-align: right;
+    }
+
+    @media print {
+
+      header,
+      .buttonContainer {
+        display: none;
+      }
+    }
+
+    @page {
+      margin-top: 60px;
+      margin-bottom: 60px;
+
+      @top {
+        content: "Booking Form"
+      }
+
+      @bottom {
+        /* footer with counter functions to insert page counters */
+        content: "Page "counter(page) " of "counter(pages)
+      }
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+</head>
+
+<body class="container">
+  <div class="territory-logo">
+    <img src="http://localhost:3000/assets/images/Air.jpg" alt="Territory Logo">
+  </div>
+  <div class="company-det-block">
+    <div class="company-det">
+      <div class="company-name">DVV MEDIA GROUP</div>
+      <div class="company-item">1ST FLOOR</div>
+      <div class="company-item">CHANCERY HOUSE</div>
+      <div class="company-item">ST NICHOLAS WAY</div>
+      <div class="company-item">SUTTON</div>
+      <div class="company-item">SM6 1JB</div>
+      <div class="company-item">UK</div>
+    </div>
+    <div class="booking-title">
+      <span>BOOKING FORM</span>
+    </div>
+  </div>
+  <div class="top-header">
+    <div class="address-line list-items">
+      <div class="label-title list-item">TO:</div>
+      <div class="list-item">SNOWS COMMERCIALS LTD </div>
+
+
+
+
+
+
+      <div class="list-item">United Kingdom </div>
+
+
+
+      <!-- <div class="list-item">Address Line 1</div>
+        <div class="list-item">Address Line 2</div>
+        <div class="list-item">Address Line 3</div>
+        <div class="list-item">City</div>
+        <div class="list-item">Country</div>
+        <div class="list-item">Zipcode</div> -->
+    </div>
+    <div class="deal-det deal-items">
+      <div class="deal-item">
+        <div class="deal-label">DEAL NO:</div>
+        <div class="deal-value">30001556358 </div>
+      </div>
+      <div class="deal-item">
+        <div class="deal-label">ACCOUNT NO:</div>
+        <div class="deal-value">12345 </div>
+      </div>
+      <div class="deal-item">
+        <div class="deal-label">CURRENCY:</div>
+        <div class="deal-value">- </div>
+      </div>
+      <div class="deal-item">
+        <div class="deal-label">DATE:</div>
+        <div class="deal-value">2021-06-02 </div>
+      </div>
+      <div class="deal-item">
+        <div class="deal-label">OWNER:</div>
+        <div class="deal-value">Joseph Christopher </div>
+      </div>
+      <div class="deal-item">
+        <div class="deal-label">CUSTOMER:</div>
+        <div class="deal-value">Mani Test</div>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+    <table id="styledTable">
+      <thead class="colhead">
+        <th>ITEM#</th>
+        <th>BOOKING</th>
+        <th>DESCRIPTION</th>
+        <th>VAT %</th>
+        <th>NET COST</th>
+      </thead>
+      <tbody>
+
+        <tr class="oddrow">
+          <td>1615292395621 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10, Start: 2021-03-16 End: 2021-03-10
+            Discount: 20<br>
+            DFFDF
+            DVVMF001
+          </td>
+          <td class="vat-col">2,000 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1616421795067 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,133 </td>
+          <td>6,800 </td>
+        </tr>
+
+        <tr>
+          <td>1616491300100 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 20,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">2,267 </td>
+          <td>13,600 </td>
+        </tr>
+
+        <tr>
+          <td>1616494000851 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 0<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,667 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1616494405557 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 1,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">0 </td>
+          <td>0 </td>
+        </tr>
+
+        <tr>
+          <td>1615364790609 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10, Start: 2021-03-18 End: 2021-03-26
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">16 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1615445131411 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10, Start: 2021-03-19 End: 2021-03-19
+            Discount: 20<br>
+            FFFF
+            DVVMF001
+          </td>
+          <td class="vat-col">16 </td>
+          <td>9,500 </td>
+        </tr>
+
+        <tr>
+          <td>1615446133547 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10, Start: 2021-03-11 End: 2021-03-26
+            Discount: 20<br>
+            Invoice
+            DVVMF001
+          </td>
+          <td class="vat-col">16 </td>
+          <td>9,600 </td>
+        </tr>
+
+        <tr>
+          <td>1616004586012 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,280 </td>
+          <td>6,400 </td>
+        </tr>
+
+        <tr>
+          <td>1616061772268 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10, Start: 2021-03-22 End: 2021-03-29
+            Discount: 20<br>
+            Address it to the CEO
+            DVVMF001
+          </td>
+          <td class="vat-col">213 </td>
+          <td>1,280 </td>
+        </tr>
+
+        <tr>
+          <td>1616065617091 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10, Start: 2021-03-25 End: 2021-04-15
+            Discount: 20<br>
+            Invoice to the CEO
+            DVVMF001
+          </td>
+          <td class="vat-col">2,500 </td>
+          <td>15,000 </td>
+        </tr>
+
+        <tr>
+          <td>1616423032101 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 1,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">0 </td>
+          <td>0 </td>
+        </tr>
+
+        <tr>
+          <td>1616487101026 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 1,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">0 </td>
+          <td>0 </td>
+        </tr>
+
+        <tr>
+          <td>1616489524725 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,133 </td>
+          <td>6,800 </td>
+        </tr>
+
+        <tr>
+          <td>1616492866040 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 0<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,667 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1616659621813 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 0<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,667 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1616422022410 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 1,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">0 </td>
+          <td>0 </td>
+        </tr>
+
+        <tr>
+          <td>1616422474445 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 1,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">0 </td>
+          <td>0 </td>
+        </tr>
+
+        <tr>
+          <td>1616421928017 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,133 </td>
+          <td>6,800 </td>
+        </tr>
+
+        <tr>
+          <td>1616485634450 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 1,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">0 </td>
+          <td>0 </td>
+        </tr>
+
+        <tr>
+          <td>1616658544643 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 0<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,667 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1617087267057 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,133 </td>
+          <td>6,800 </td>
+        </tr>
+
+        <tr>
+          <td>1616659135230 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 0<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,667 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1616493785951 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 10,
+            Discount: 0<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">1,667 </td>
+          <td>10,000 </td>
+        </tr>
+
+        <tr>
+          <td>1619000713308 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 1,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">0 </td>
+          <td>0 </td>
+        </tr>
+
+        <tr>
+          <td>1619609149904 </td>
+          <td>Multiform</td>
+          <td class="desc">
+            <!-- Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial -->
+            Quantity: 2,
+            Discount: 20<br>
+
+            DVVMF001
+          </td>
+          <td class="vat-col">2,267 </td>
+          <td>13,600 </td>
+        </tr>
+
+
+
+
+        <tr>
+          <td>1615470020689</td>
+          <td>Multiform</td>
+          <td class="desc">Distribution Ad, Flight Global Newsletters, Aerospace, Slot 2, Advertorial
+            Quantity: 1, Start: 18/03/2021 End: 18/03/2021
+            Discount: 15%
+            Free text from the invoice comments field on this line.
+            PO 123456</td>
+          <td class="vat-col">20</td>
+          <td>100.00</td>
+        </tr>
+        <tr class="last-row">
+          <td class="no-border" colspan="3"></td>
+          <td>SUBTOTAL</td>
+          <td>176,180 </td>
+        </tr>
+        <tr class="last-row">
+          <td class="no-border" colspan="3"></td>
+          <td>VAT</td>
+          <td>25,109 </td>
+        </tr>
+        <tr class="last-row">
+          <td class="no-border" colspan="3"></td>
+          <td class="bold-text">TOTAL INC. VAT</td>
+          <td>201,289 </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="authorize-container">
+    <div class="authorize-item pl0">
+      <div class="authorize-item-label">Authorized by</div>
+      <div class="authorize-item-value"></div>
+    </div>
+    <div class="authorize-item">
+      <div class="authorize-item-label">Date</div>
+      <!-- <div class="authorize-item-value">2021-06-02</div> -->
+    </div>
+  </div>
+  <footer>
+    <div class="footer-text">
+      DVV Media International Ltd <b>Registered Office:</b> DVV Media International Ltd, 1st Floor, Chancery House, St
+      Nicholas
+      Way, Sutton, Surrey, SM1 1JB <b>Company Registration Number:</b>07464854 <b>VAT Registration Number:</b>105 6409
+      37
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -24,12 +24,16 @@ const getPDFOpts = (req) => {
 }
 
 app.post('/to-pdf', async (req, res) => {
-  let file = { content: req.body.toString() };
+  // let file = { content: req.body.toString() };
   let pdfOpts = getPDFOpts(req);
   const filename = pdfOpts.filename;
   delete pdfOpts.filename;
   const options = { format: 'A4', margin: { top: 80, bottom: 80 }, ...pdfOpts }
   try {
+    const filepath = path.resolve(__dirname, 'outputs/sample.html');
+    fs.writeFileSync(filepath, req.body);
+    // let file = { url : "http://localhost:9001/pdf" }
+    let file = { url : "http://topdf.dxmari.com/pdf" }
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
     fs.writeFileSync(path.resolve(__dirname, 'sample.pdf'), pdfBuffer);
     res.json({
@@ -50,6 +54,18 @@ app.get('/asset/img.jpg', (req, res) => {
 app.get('/get-file', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'sample.pdf'))
 })
+
+app.get('/pdf', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'outputs/sample.html'))
+})
+
+app.get('/outputs/*', (req, res) =>{
+  res.sendFile(path.resolve(__dirname, req.path.replace('/', '')));
+})
+
+// app.get('*', (req, res) =>{
+//   res.sendFile(path.resolve(__dirname, req.path.replace('/', '')));
+// })
 
 const server = http.createServer(app);
 server.listen(9001, () => {
