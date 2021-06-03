@@ -10,9 +10,23 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(raw({ type: 'text/html' }));
 
+
+const getPDFOpts = (req) =>{
+  let pdfOpts = {};
+  try {
+    if(req.query.options){
+      pdfOpts = JSON.parse(JSON.parse(req.query.options));
+    }
+    return pdfOpts;
+  } catch (error) {
+    return pdfOpts;
+  }
+}
+
 app.post('/to-pdf', async (req, res) => {
   let file = { content: req.body.toString() };
-  const options = { format: 'A4', margin: { top: 80, bottom : 80 } }
+  let pdfOpts = getPDFOpts(req);
+  const options = { format: 'A4', margin: { top: 80, bottom: 80 }, ...pdfOpts }
   try {
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
     fs.writeFileSync(path.resolve(__dirname, 'sample.pdf'), pdfBuffer);
