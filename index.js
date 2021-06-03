@@ -15,7 +15,12 @@ const getPDFOpts = (req) => {
   let pdfOpts = {};
   try {
     if (req.query.options) {
-      pdfOpts = JSON.parse(JSON.parse(req.query.options));
+      pdfOpts = JSON.parse(req.query.options);
+      console.log('pdfOpts1', pdfOpts)
+      if(typeof pdfOpts !== 'object'){
+        pdfOpts = JSON.parse(pdfOpts)
+        console.log('pdfOpts2', pdfOpts)
+      }
     }
     return pdfOpts;
   } catch (error) {
@@ -28,6 +33,7 @@ app.post('/to-pdf', async (req, res) => {
   let pdfOpts = getPDFOpts(req);
   const filename = pdfOpts.filename;
   delete pdfOpts.filename;
+  console.log('pdfOpts3', pdfOpts)
   const options = { format: 'A4', margin: { top: 80, bottom: 80 }, ...pdfOpts }
   try {
     const filepath = path.resolve(__dirname, 'outputs/sample.html');
