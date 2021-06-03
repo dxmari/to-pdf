@@ -11,10 +11,10 @@ app.use(urlencoded({ extended: false }));
 app.use(raw({ type: 'text/html' }));
 
 
-const getPDFOpts = (req) =>{
+const getPDFOpts = (req) => {
   let pdfOpts = {};
   try {
-    if(req.query.options){
+    if (req.query.options) {
       pdfOpts = JSON.parse(JSON.parse(req.query.options));
     }
     return pdfOpts;
@@ -26,6 +26,8 @@ const getPDFOpts = (req) =>{
 app.post('/to-pdf', async (req, res) => {
   let file = { content: req.body.toString() };
   let pdfOpts = getPDFOpts(req);
+  const filename = pdfOpts.filename;
+  delete pdfOpts.filename;
   const options = { format: 'A4', margin: { top: 80, bottom: 80 }, ...pdfOpts }
   try {
     const pdfBuffer = await html_to_pdf.generatePdf(file, options);
